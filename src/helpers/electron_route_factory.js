@@ -36,7 +36,7 @@ export default class ElectronRouteFactory {
         const result = await this._routes[instanceName][methodName](args)
         const reply = {
           succeed: true,
-          ...result
+          data: result
         }
         IpcMainUtil.return_(event, reply)
         logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)

@@ -21,10 +21,15 @@ class IpcRendererUtil {
   }
 
   static sendSyncCommandForResult (controller, cmd, args) {
-    return electron.ipcRenderer.sendSync('sync_message', {
+    const result = electron.ipcRenderer.sendSync('sync_message', {
       cmd: `${controller}.${cmd}`,
       args
     })
+    if (result[`succeed`] !== true) {
+      alert(result[`error_message`])
+      return
+    }
+    return result[`data`]
   }
 
   static sendAsyncCommand (controller, cmd, args) {

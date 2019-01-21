@@ -1,11 +1,6 @@
 {
   "presets": [
-    "env",
-    "stage-3",
-    "react"
-  ],
-  "plugins": [
-    "transform-decorators-legacy"
+    "env"
   ],
   "ignore":[
     "node_modules"

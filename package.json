@@ -1,6 +1,6 @@
 {
   "name": "p-electron-common",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -24,6 +24,7 @@
     "doc": "rm -rf docs && jsdoc src -r -d docs"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "electron": "^4.0.1"
   }
 }
