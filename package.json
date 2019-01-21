@@ -1,0 +1,29 @@
+{
+  "name": "p-electron-common",
+  "version": "0.0.1",
+  "description": "common tool of electron",
+  "keywords": [
+    "common",
+    "js",
+    "tool"
+  ],
+  "homepage": "https://gitee.com/pefish/p-electron-common",
+  "bugs": "https://gitee.com/pefish/p-electron-common/issues",
+  "license": "MIT",
+  "author": "pefish",
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/pefish/p-electron-common"
+  },
+  "scripts": {
+    "build": "rm -rf lib && babel src -d lib",
+    "test": "mocha -t 20000 -R spec --compilers js:babel-core/register --require babel-polyfill tests/*.test.js",
+    "doc": "rm -rf docs && jsdoc src -r -d docs"
+  },
+  "devDependencies": {
+    "electron": "^4.0.1"
+  }
+}
