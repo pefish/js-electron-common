@@ -1,6 +1,6 @@
 {
   "name": "p-electron-common",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -26,5 +26,8 @@
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
     "electron": "^4.0.1"
+  },
+  "dependencies": {
+    "p-js-error": "^0.0.3"
   }
 }

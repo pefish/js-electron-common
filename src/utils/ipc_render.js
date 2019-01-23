@@ -1,6 +1,7 @@
 /** @module */
 
 import electron from 'electron'
+import ErrorHelper from 'p-js-error'
 
 /**
  * 副窗口ipc工具类
@@ -27,7 +28,7 @@ class IpcRendererUtil {
     })
     if (result[`succeed`] !== true) {
       alert(result[`error_message`])
-      return
+      throw new ErrorHelper(result[`error_message`])
     }
     return result[`data`]
   }
