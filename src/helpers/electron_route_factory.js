@@ -25,6 +25,7 @@ export default class ElectronRouteFactory {
     }
 
     IpcMainUtil.onSyncCommand(async (event, cmd, args) => {
+      let reply
       try {
         logger.info(`-----------收到同步请求 ${cmd} ${JSON.stringify(args)}`)
         const [instanceName, methodName] = cmd.split(/\./)
@@ -34,7 +35,7 @@ export default class ElectronRouteFactory {
           return
         }
         const result = await this._routes[instanceName][methodName](args)
-        const reply = {
+        reply = {
           succeed: true,
           data: result
         }
@@ -42,26 +43,39 @@ export default class ElectronRouteFactory {
         logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)
       } catch (err) {
         logger.error(err)
-        IpcMainUtil.return_(event, {
+        reply = {
           succeed: false,
           error_message: err.getErrorMessage ? err.getErrorMessage() : `内部错误`
-        })
+        }
+        IpcMainUtil.return_(event, reply)
+        logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)
       }
     })
 
     IpcMainUtil.onAsyncCommand(async (event, cmd, args) => {
+      let reply
       try {
         logger.info(`-----------收到异步请求 ${cmd} ${JSON.stringify(args)}`)
         const [instanceName, methodName] = cmd.split(/\./)
         if (!this._routes[instanceName]) {
+          logger.info(`-----------回复异步请求 ${cmd} 未找到路由`)
           return
         }
         const result = await this._routes[instanceName][methodName](args)
-        if (result['replyName']) {
-          IpcMainUtil.sendAsyncCommand(event, result['replyName'], result['replyDatas'])
+        reply = {
+          succeed: true,
+          data: result
         }
+        IpcMainUtil.sendAsyncCommand(event, cmd, reply)
+        logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(reply)}`)
       } catch (err) {
         logger.error(err)
+        reply = {
+          succeed: false,
+          error_message: err.getErrorMessage ? err.getErrorMessage() : `内部错误`
+        }
+        IpcMainUtil.sendAsyncCommand(event, cmd, reply)
+        logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(reply)}`)
       }
     })
   }

@@ -7,23 +7,16 @@ import ErrorHelper from 'p-js-error'
  * 副窗口ipc工具类
  */
 class IpcRendererUtil {
-  static sendSyncMessageForResult (msg) {
-    return electron.ipcRenderer.sendSync('sync_message', msg)
-  }
-
-  static sendAsyncMessage (msg) {
-    electron.ipcRenderer.send('async_message', msg)
-  }
-
-  static onAsyncMessage (cb) {
-    electron.ipcRenderer.on('async_message', (event, args) => {
-      cb(event, args)
-    })
-  }
-
-  static sendSyncCommandForResult (controller, cmd, args) {
+  /**
+   * 会阻塞UI进程
+   * @param controller
+   * @param method
+   * @param args
+   * @returns {*}
+   */
+  static sendSyncCommandForResult (controller, method, args) {
     const result = electron.ipcRenderer.sendSync('sync_message', {
-      cmd: `${controller}.${cmd}`,
+      cmd: `${controller}.${method}`,
       args
     })
     if (result[`succeed`] !== true) {
@@ -33,16 +26,21 @@ class IpcRendererUtil {
     return result[`data`]
   }
 
-  static sendAsyncCommand (controller, cmd, args) {
-    electron.ipcRenderer.send('async_message', {
-      cmd: `${controller}.${cmd}`,
-      args
-    })
-  }
+  static async sendAsyncCommand (controller, method, args) {
+    const cmd = `${controller}.${method}`
+    return new Promise((resolve, reject) => {
+      electron.ipcRenderer.once(`async_message_${cmd}`, (event, result) => {
+        if (result[`succeed`] !== true) {
+          alert(result[`error_message`])
+          reject(new ErrorHelper(result[`error_message`]))
+        }
+        resolve(result[`data`])
+      })
 
-  static onAsyncCommand (cb) {
-    electron.ipcRenderer.on('async_message', (event, args) => {
-      cb(event, args['cmd'], args['args'])
+      electron.ipcRenderer.send('async_message', {
+        cmd,
+        args
+      })
     })
   }
 }

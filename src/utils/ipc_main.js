@@ -6,18 +6,6 @@ import electron from 'electron'
  * 主窗口ipc工具类
  */
 class IpcMainUtil {
-  static onAsyncMessage (cb) {
-    electron.ipcMain.on('async_message', (event, args) => {
-      cb(event, args)
-    })
-  }
-
-  static onSyncMessage (cb) {
-    electron.ipcMain.on('sync_message', (event, args) => {
-      cb(event, args)
-    })
-  }
-
   static onSyncCommand (cb) {
     electron.ipcMain.on('sync_message', (event, args) => {
       cb(event, args['cmd'], args['args'])
@@ -31,10 +19,7 @@ class IpcMainUtil {
   }
 
   static sendAsyncCommand (event, cmd, args) {
-    event.sender.send('async_message', {
-      cmd,
-      args
-    })
+    event.sender.send(`async_message_${cmd}`, args)
   }
 
   static return_ (event, datas) {
