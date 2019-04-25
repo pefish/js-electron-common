@@ -1,6 +1,6 @@
 {
   "name": "p-electron-common",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -28,6 +28,6 @@
     "electron": "^4.0.1"
   },
   "dependencies": {
-    "p-js-error": "^0.0.3"
+    "p-js-error": "^0.0.4"
   }
 }

@@ -517,11 +517,6 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bignumber.js@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-6.0.0.tgz#bbfa047644609a5af093e9cbd83b0461fa3f6002"
-  integrity sha512-x247jIuy60/+FtMRvscqfxtVHQf8AGx2hm9c6btkgC0x/hp9yt+teISNhvF8WlwRkCc5yF2fDECH8SIMe8j+GA==
-
 browserslist@^3.2.6:
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-3.2.8.tgz#b0005361d6471f0f5952797a76fc985f1f978fc6"
@@ -1055,14 +1050,6 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
 
-node-assist@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/node-assist/-/node-assist-0.4.0.tgz#c0e5522ff8f3c2bdd33c0204599e4ddeab912ca8"
-  integrity sha512-g0mc1MUZobwSx5+9Aekj+1Hx4E6ljzbS0iZBA3+32mPsju/TSTdMxO87q4pgs7qJyM8fS9ZY1YnV9v8sHzFGIQ==
-  dependencies:
-    bignumber.js "^6.0.0"
-    regenerator-runtime "^0.13.1"
-
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.0.tgz#12f95a307d58352075a04907b84ac8be98ac012f"
@@ -1106,12 +1093,10 @@ object-keys@~0.4.0:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-0.4.0.tgz#28a6aae7428dd2c3a92f3d95f21335dd204e0336"
   integrity sha1-KKaq50KN0sOpLz2V8hM13SBOAzY=
 
-p-js-error@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/p-js-error/-/p-js-error-0.0.3.tgz#1c5758ba3a7cd405ce4c4721afcaf41b0ac7e40b"
-  integrity sha512-tPGq0azSO/rQPbYrJIh1jSQF+d4zKu1lyXHMoRKVxjs833aKTdhaC5YUoUiBBW9L1zs6ERXGTARqfawo41wUqw==
-  dependencies:
-    node-assist "^0.4.0"
+p-js-error@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/p-js-error/-/p-js-error-0.0.4.tgz#ae7dbba4f998576012bb818227961b7961cc9902"
+  integrity sha512-voF6p/u1QP+7UMMqZLucmnXHN5JncAvyeKjlvGVRQ9HuFhIL/RBxZ0gN0g1UXaRNdsOorWNfnNHuTGKNMN7toA==
 
 parse-json@^2.2.0:
   version "2.2.0"
@@ -1281,11 +1266,6 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
-
-regenerator-runtime@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.1.tgz#522ea2aafd9200a00eee143dc14219a35a0f3991"
-  integrity sha512-5KzMIyPLvfdPmvsdlYsHqITrDfK9k7bmvf97HvHSN4810i254ponbxCQ1NukpRWlu6en2MBWzAlhDExEKISwAA==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"
