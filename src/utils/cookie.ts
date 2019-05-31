@@ -1,7 +1,7 @@
 /** @module */
 
 import electron from 'electron'
-import ErrorHelper from '../helpers/error'
+import ErrorHelper from '@pefish/js-error'
 
 /**
  * Cookie工具类

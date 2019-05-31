@@ -28,7 +28,7 @@ class AppUtil {
       try {
         await cb()
       } catch (err) {
-        logger.error(err)
+        global.logger.error(err)
         electron.app.quit()
       }
     })
@@ -37,7 +37,7 @@ class AppUtil {
         onClosed && await onClosed()
         electron.app.quit()
       } catch (err) {
-        logger.error(err)
+        global.logger.error(err)
         electron.app.quit()
       }
     })

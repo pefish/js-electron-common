@@ -1,7 +1,7 @@
 /** @module */
 
 import electron from 'electron'
-import ErrorHelper from 'p-js-error'
+import ErrorHelper from '@pefish/js-error'
 
 /**
  * 副窗口ipc工具类

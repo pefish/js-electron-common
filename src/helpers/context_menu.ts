@@ -8,6 +8,8 @@ const { Menu, MenuItem } = electron.remote
  */
 class ContextMenu {
 
+  _menu: any
+
   constructor () {
     this._menu = new Menu()
   }

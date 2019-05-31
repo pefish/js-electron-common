@@ -4,6 +4,8 @@
  * html文档监听器
  */
 class DocumentListener {
+  _document: any
+
   constructor (document) {
     this._document = document
   }

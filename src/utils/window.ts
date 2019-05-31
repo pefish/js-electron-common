@@ -1,5 +1,5 @@
 import electron from "electron"
-import FileUtil from '../utils/file'
+import FileUtil from '@pefish/js-util-file'
 import path from 'path'
 
 export default class WindowUtil {

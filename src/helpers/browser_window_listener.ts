@@ -4,6 +4,9 @@
  * 浏览器窗口监听器
  */
 class BrowserWindowListener {
+
+  _win: any
+
   constructor (win) {
     this._win = win
   }
