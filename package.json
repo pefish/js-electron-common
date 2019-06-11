@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-electron-common",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -20,7 +20,7 @@
     "url": "https://github.com/pefish/js-electron-common"
   },
   "scripts": {
-    "build": "rm -rf lib types && tsc",
+    "build": "rm -rf lib types lib && tsc",
     "test": "mocha --timeout 6000 --require ts-node/register src/*.test.ts",
     "prepublish": "yarn build"
   },

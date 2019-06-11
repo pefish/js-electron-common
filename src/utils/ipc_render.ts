@@ -37,7 +37,8 @@ class IpcRendererUtil {
     return new Promise((resolve, reject) => {
       const receiveEventName = `async_message_${cmd}`
       electron.ipcRenderer.once(receiveEventName, (event, result) => {
-        console.log(`async receive. listenEvent: ${receiveEventName}, event: ${event}`)
+        console.log(`async receive. listenEvent: ${receiveEventName}`)
+        console.log(`event`, event)
         console.log(`result`, result)
         if (result[`succeed`] !== true) {
           alert(result[`error_message`])
