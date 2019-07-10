@@ -59,7 +59,7 @@ export default class ElectronRouteFactory {
         global.logger.error(err)
         reply = {
           succeed: false,
-          error_message: err.getErrorMessage ? err.getErrorMessage() : `内部错误`
+          error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
         }
         IpcMainUtil.return_(event, reply)
         global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)
@@ -86,7 +86,7 @@ export default class ElectronRouteFactory {
         global.logger.error(err)
         reply = {
           succeed: false,
-          error_message: err.getErrorMessage ? err.getErrorMessage() : `内部错误`
+          error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
         }
         IpcMainUtil.sendAsyncCommand(event, cmd, reply)
         global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(reply)}`)
