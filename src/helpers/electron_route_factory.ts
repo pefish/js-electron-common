@@ -2,6 +2,7 @@
 import FileUtil from '@pefish/js-util-file'
 import path from 'path'
 import IpcMainUtil from '../utils/ipc_main'
+import * as util from "util";
 
 declare global {
   namespace NodeJS {
@@ -56,7 +57,7 @@ export default class ElectronRouteFactory {
         IpcMainUtil.return_(event, reply)
         global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)
       } catch (err) {
-        global.logger.error(err)
+        global.logger.error(util.inspect(err))
         reply = {
           succeed: false,
           error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
@@ -83,7 +84,7 @@ export default class ElectronRouteFactory {
         IpcMainUtil.sendAsyncCommand(event, cmd, reply)
         global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(reply)}`)
       } catch (err) {
-        global.logger.error(err)
+        global.logger.error(util.inspect(err))
         reply = {
           succeed: false,
           error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
