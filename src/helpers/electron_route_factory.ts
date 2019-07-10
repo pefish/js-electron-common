@@ -30,10 +30,11 @@ export default class ElectronRouteFactory {
   buildRoute (controllersPath) {
     const filesAndDirs = FileUtil.getFilesAndDirs(controllersPath)
     for (let file of filesAndDirs.files) {
-      if (!file.endsWith(`.js`)) {
+      if (!file.endsWith(`.js`) || !file.endsWith(`.ts`)) {
         continue
       }
-      const name = path.basename(file, '.js')
+      let name = path.basename(file)
+      name = name.substring(0, name.length - 3);
       this._routes[name] = new (require(`${controllersPath}/${name}`).default)()
     }
 
