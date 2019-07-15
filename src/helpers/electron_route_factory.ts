@@ -3,6 +3,7 @@ import FileUtil from '@pefish/js-util-file'
 import path from 'path'
 import IpcMainUtil from '../utils/ipc_main'
 import * as util from "util";
+import DesensitizeUtil from '@pefish/js-util-desensitize'
 
 declare global {
   namespace NodeJS {
@@ -21,16 +22,6 @@ export default class ElectronRouteFactory {
 
   constructor() {
     this.routes = {}
-  }
-
-  desensitize (data: {}): {} {
-    const temp = Object.assign({}, data)
-    for (const [k, _] of Object.entries(temp)) {
-      if ([`password`, `pass`, `key`, `pkey`, `token`].includes(k)) {
-        temp[k] = `****`
-      }
-    }
-    return temp
   }
 
   /**
@@ -52,7 +43,7 @@ export default class ElectronRouteFactory {
     IpcMainUtil.onSyncCommand(async (event, cmd, args) => {
       let reply
       try {
-        global.logger.info(`-----------收到同步请求 ${cmd} ${JSON.stringify(this.desensitize(args))}`)
+        global.logger.info(`-----------收到同步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(args)}`)
         const [instanceName, methodName] = cmd.split(/\./)
         if (!this.routes[instanceName]) {
           IpcMainUtil.return_(event, `${cmd} nothing`)
@@ -65,7 +56,7 @@ export default class ElectronRouteFactory {
           data: result
         }
         IpcMainUtil.return_(event, reply)
-        global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
+        global.logger.info(`-----------回复同步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(reply)}`)
       } catch (err) {
         global.logger.error(util.inspect(err))
         reply = {
@@ -73,14 +64,14 @@ export default class ElectronRouteFactory {
           error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
         }
         IpcMainUtil.return_(event, reply)
-        global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
+        global.logger.info(`-----------回复同步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(reply)}`)
       }
     })
 
     IpcMainUtil.onAsyncCommand(async (event, cmd, args) => {
       let reply
       try {
-        global.logger.info(`-----------收到异步请求 ${cmd} ${JSON.stringify(this.desensitize(args))}`)
+        global.logger.info(`-----------收到异步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(args)}`)
         const [instanceName, methodName] = cmd.split(/\./)
         if (!this.routes[instanceName]) {
           global.logger.info(`-----------回复异步请求 ${cmd} 未找到路由`)
@@ -92,7 +83,7 @@ export default class ElectronRouteFactory {
           data: result
         }
         IpcMainUtil.sendAsyncCommand(event, cmd, reply)
-        global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
+        global.logger.info(`-----------回复异步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(reply)}`)
       } catch (err) {
         global.logger.error(util.inspect(err))
         reply = {
@@ -100,7 +91,7 @@ export default class ElectronRouteFactory {
           error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
         }
         IpcMainUtil.sendAsyncCommand(event, cmd, reply)
-        global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
+        global.logger.info(`-----------回复异步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(reply)}`)
       }
     })
   }

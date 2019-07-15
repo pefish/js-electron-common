@@ -32,6 +32,11 @@
     p-js-assert "^0.0.1"
     p-js-error "^0.0.4"
 
+"@pefish/js-util-desensitize@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@pefish/js-util-desensitize/-/js-util-desensitize-0.0.2.tgz#b789cc312f047cdbe825689850e09e306c8c94cf"
+  integrity sha512-rMgxXjjVkubGd1yYxR4sA5tBjhSZbFDqMpNl9N+YuYxdYFHZovz7/v8x4WCAPBlPKdi8v2V6gP1kDwXQG7J38A==
+
 "@pefish/js-util-file@^0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@pefish/js-util-file/-/js-util-file-0.0.1.tgz#f5a77e277df5d1359d72fb2988bd9b2b746b23c3"

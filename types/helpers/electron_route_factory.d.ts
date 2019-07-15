@@ -12,7 +12,6 @@ declare global {
 export default class ElectronRouteFactory {
     routes: any;
     constructor();
-    desensitize(data: {}): {};
     /**
      * 构建所有路由
      * @param controllersPath
