@@ -17,10 +17,20 @@ declare global {
  * @private
  */
 export default class ElectronRouteFactory {
-  _routes: any
+  routes: any
 
   constructor() {
-    this._routes = {}
+    this.routes = {}
+  }
+
+  desensitize (data: {}): {} {
+    const temp = Object.assign({}, data)
+    for (const [k, _] of Object.entries(temp)) {
+      if ([`password`, `pass`, `key`, `pkey`, `token`].includes(k)) {
+        temp[k] = `****`
+      }
+    }
+    return temp
   }
 
   /**
@@ -36,26 +46,26 @@ export default class ElectronRouteFactory {
       }
       let name = path.basename(file)
       name = name.substring(0, name.length - 3);
-      this._routes[name] = new (require(`${controllersPath}/${name}`).default)()
+      this.routes[name] = new (require(`${controllersPath}/${name}`).default)()
     }
 
     IpcMainUtil.onSyncCommand(async (event, cmd, args) => {
       let reply
       try {
-        global.logger.info(`-----------收到同步请求 ${cmd} ${JSON.stringify(args)}`)
+        global.logger.info(`-----------收到同步请求 ${cmd} ${JSON.stringify(this.desensitize(args))}`)
         const [instanceName, methodName] = cmd.split(/\./)
-        if (!this._routes[instanceName]) {
+        if (!this.routes[instanceName]) {
           IpcMainUtil.return_(event, `${cmd} nothing`)
           global.logger.info(`-----------回复同步请求 ${cmd} nothing`)
           return
         }
-        const result = await this._routes[instanceName][methodName](args)
+        const result = await this.routes[instanceName][methodName](args)
         reply = {
           succeed: true,
           data: result
         }
         IpcMainUtil.return_(event, reply)
-        global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)
+        global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
       } catch (err) {
         global.logger.error(util.inspect(err))
         reply = {
@@ -63,26 +73,26 @@ export default class ElectronRouteFactory {
           error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
         }
         IpcMainUtil.return_(event, reply)
-        global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(reply)}`)
+        global.logger.info(`-----------回复同步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
       }
     })
 
     IpcMainUtil.onAsyncCommand(async (event, cmd, args) => {
       let reply
       try {
-        global.logger.info(`-----------收到异步请求 ${cmd} ${JSON.stringify(args)}`)
+        global.logger.info(`-----------收到异步请求 ${cmd} ${JSON.stringify(this.desensitize(args))}`)
         const [instanceName, methodName] = cmd.split(/\./)
-        if (!this._routes[instanceName]) {
+        if (!this.routes[instanceName]) {
           global.logger.info(`-----------回复异步请求 ${cmd} 未找到路由`)
           return
         }
-        const result = await this._routes[instanceName][methodName](args)
+        const result = await this.routes[instanceName][methodName](args)
         reply = {
           succeed: true,
           data: result
         }
         IpcMainUtil.sendAsyncCommand(event, cmd, reply)
-        global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(reply)}`)
+        global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
       } catch (err) {
         global.logger.error(util.inspect(err))
         reply = {
@@ -90,7 +100,7 @@ export default class ElectronRouteFactory {
           error_message: err.getErrorMessage_ ? err.getErrorMessage_() : err.message
         }
         IpcMainUtil.sendAsyncCommand(event, cmd, reply)
-        global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(reply)}`)
+        global.logger.info(`-----------回复异步请求 ${cmd} ${JSON.stringify(this.desensitize(reply))}`)
       }
     })
   }

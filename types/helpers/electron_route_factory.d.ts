@@ -10,8 +10,9 @@ declare global {
  * @private
  */
 export default class ElectronRouteFactory {
-    _routes: any;
+    routes: any;
     constructor();
+    desensitize(data: {}): {};
     /**
      * 构建所有路由
      * @param controllersPath

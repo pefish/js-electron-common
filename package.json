@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-electron-common",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "common tool of electron",
   "keywords": [
     "common",
