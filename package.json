@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-electron-common",
-  "version": "0.1.13",
+  "version": "0.1.16",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -26,9 +26,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@pefish/js-error": "^0.0.5",
-    "@pefish/js-util-desensitize": "^0.0.2",
-    "@pefish/js-util-file": "^0.0.1"
+    "@pefish/js-error": "^0.1.1",
+    "@pefish/js-util-desensitize": "^0.0.3",
+    "@pefish/js-util-file": "^0.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

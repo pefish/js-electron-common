@@ -23,6 +23,11 @@
   resolved "https://registry.yarnpkg.com/@pefish/js-error/-/js-error-0.0.5.tgz#be50104cb7e6cb115a31ccdc55dafcf09a65a4ec"
   integrity sha512-Eypll4OykI0EWj61wx8/cVMVldGjiPJVic/KzK76z1RZiNN9Q2TF7DJif+qg7MBlGbJHAQZ77wIBv5x9fndxpw==
 
+"@pefish/js-error@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@pefish/js-error/-/js-error-0.1.1.tgz#d3e6f4a1362206aaf73afd628465364c3a581ed2"
+  integrity sha512-JNLY0twr0fVEnGgrMetZsBZrStDGmHDX0dY9amDChTzVqrGEd6dvpzkR9BxINGhWgeAX6naTzI2FZn3ZwGlrsw==
+
 "@pefish/js-node-assist@^0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@pefish/js-node-assist/-/js-node-assist-0.6.0.tgz#3c9b377c91c1fb91ef5bf1e6023b6cfd2eb4785f"
@@ -32,15 +37,15 @@
     p-js-assert "^0.0.1"
     p-js-error "^0.0.4"
 
-"@pefish/js-util-desensitize@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@pefish/js-util-desensitize/-/js-util-desensitize-0.0.2.tgz#b789cc312f047cdbe825689850e09e306c8c94cf"
-  integrity sha512-rMgxXjjVkubGd1yYxR4sA5tBjhSZbFDqMpNl9N+YuYxdYFHZovz7/v8x4WCAPBlPKdi8v2V6gP1kDwXQG7J38A==
+"@pefish/js-util-desensitize@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@pefish/js-util-desensitize/-/js-util-desensitize-0.0.3.tgz#83336a64d4be0e1c952e9799f3c0404bca8cee97"
+  integrity sha512-dYRZArm/4JWSnVEU2InLFmECfM6x88ix6qLPOJZQJp450FBsZDNvCaIIvPPQVqkZSeR5V6hDTxLd20INwnbXGw==
 
-"@pefish/js-util-file@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@pefish/js-util-file/-/js-util-file-0.0.1.tgz#f5a77e277df5d1359d72fb2988bd9b2b746b23c3"
-  integrity sha512-KQdUadykKzGjk1vY9VA1uFaWpDcS5M4X0rsKup/G+7ljBp/5j/P05eTpG0vzPlHzQIs6H4udSmCQWsRoeK2T9A==
+"@pefish/js-util-file@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@pefish/js-util-file/-/js-util-file-0.0.2.tgz#157cb2eefeabc19e2b8463a73f6af73ccdcce77a"
+  integrity sha512-wzkbkklxB6GrtmJkM97o4zCufr2XeNghjrZrD2fTo9MbqUdKyjVThzQqwZ1xfHF0YjhTRaD9XbBB11dzzWK9ww==
   dependencies:
     "@pefish/js-error" "^0.0.5"
     "@pefish/js-node-assist" "^0.6.0"
