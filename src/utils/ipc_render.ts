@@ -14,7 +14,7 @@ class IpcRendererUtil {
    * @param args
    * @returns {*}
    */
-  static sendSyncCommandForResult (controller, method, args) {
+  static sendSyncCommandForResult (controller: string, method: string, args: {[x: string]: any}): any {
     const sendEventName = `sync_message`
     const datas = {
       cmd: `${controller}.${method}`,
@@ -32,7 +32,7 @@ class IpcRendererUtil {
     return result[`data`]
   }
 
-  static async sendAsyncCommand (controller, method, args) {
+  static async sendAsyncCommand (controller: string, method: string, args: {[x: string]: any}): Promise<any> {
     const cmd = `${controller}.${method}`
     return new Promise((resolve, reject) => {
       const receiveEventName = `async_message_${cmd}`

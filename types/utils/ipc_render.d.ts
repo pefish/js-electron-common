@@ -10,7 +10,11 @@ declare class IpcRendererUtil {
      * @param args
      * @returns {*}
      */
-    static sendSyncCommandForResult(controller: any, method: any, args: any): any;
-    static sendAsyncCommand(controller: any, method: any, args: any): Promise<unknown>;
+    static sendSyncCommandForResult(controller: string, method: string, args: {
+        [x: string]: any;
+    }): any;
+    static sendAsyncCommand(controller: string, method: string, args: {
+        [x: string]: any;
+    }): Promise<any>;
 }
 export default IpcRendererUtil;
