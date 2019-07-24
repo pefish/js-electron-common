@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-electron-common",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -11,6 +11,7 @@
   "bugs": "https://github.com/pefish/js-electron-common/issues",
   "license": "MIT",
   "author": "pefish",
+  "main": "./lib/index.js",
   "types": "./types/index.d.ts",
   "engines": {
     "node": "*"
