@@ -35,9 +35,9 @@ class AppUtil {
     electron.app.on('window-all-closed', async () => {
       try {
         onClosed && await onClosed()
-        electron.app.quit()
       } catch (err) {
         global.logger.error(err)
+      } finally {
         electron.app.quit()
       }
     })
