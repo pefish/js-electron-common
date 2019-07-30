@@ -12,9 +12,9 @@ declare class IpcRendererUtil {
      */
     static sendSyncCommandForResult(controller: string, method: string, args: {
         [x: string]: any;
-    }): any;
+    }, errCb?: (errMsg: string) => void): any;
     static sendAsyncCommand(controller: string, method: string, args: {
         [x: string]: any;
-    }): Promise<any>;
+    }, errCb?: (errMsg: string) => void): Promise<any>;
 }
 export default IpcRendererUtil;

@@ -14,7 +14,7 @@ class IpcRendererUtil {
    * @param args
    * @returns {*}
    */
-  static sendSyncCommandForResult (controller: string, method: string, args: {[x: string]: any}): any {
+  static sendSyncCommandForResult (controller: string, method: string, args: {[x: string]: any}, errCb: (errMsg: string) => void = null): any {
     const sendEventName = `sync_message`
     const datas = {
       cmd: `${controller}.${method}`,
@@ -22,19 +22,19 @@ class IpcRendererUtil {
     }
     const result = electron.ipcRenderer.sendSync(sendEventName, datas)
     if (result[`succeed`] !== true) {
-      alert(result[`error_message`])
+      errCb ? errCb(result[`error_message`]) : alert(result[`error_message`])
       throw new ErrorHelper(result[`error_message`])
     }
     return result[`data`]
   }
 
-  static async sendAsyncCommand (controller: string, method: string, args: {[x: string]: any}): Promise<any> {
+  static async sendAsyncCommand (controller: string, method: string, args: {[x: string]: any}, errCb: (errMsg: string) => void = null): Promise<any> {
     const cmd = `${controller}.${method}`
     return new Promise((resolve, reject) => {
       const receiveEventName = `async_message_${cmd}`
       electron.ipcRenderer.once(receiveEventName, (event, result) => {
         if (result[`succeed`] !== true) {
-          alert(result[`error_message`])
+          errCb ? errCb(result[`error_message`]) : alert(result[`error_message`])
           reject(new ErrorHelper(result[`error_message`]))
         }
         resolve(result[`data`])
