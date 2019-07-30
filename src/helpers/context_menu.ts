@@ -1,8 +1,6 @@
 /** @module */
 import electron from 'electron'
 
-const { Menu, MenuItem } = electron.remote
-
 /**
  * 右键菜单
  */
@@ -11,11 +9,11 @@ class ContextMenu {
   _menu: any
 
   constructor () {
-    this._menu = new Menu()
+    this._menu = new electron.remote.Menu()
   }
 
   append (props) {
-    this._menu.append(new MenuItem(props))
+    this._menu.append(new electron.remote.MenuItem(props))
   }
 
   install () {
