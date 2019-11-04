@@ -4,6 +4,8 @@ import path from 'path'
 import IpcMainUtil from '../utils/ipc_main'
 import * as util from "util";
 import DesensitizeUtil from '@pefish/js-util-desensitize'
+import { net } from 'electron';
+import HttpRequestUtil from '@pefish/js-util-httprequest';
 
 declare global {
   namespace NodeJS {
@@ -39,6 +41,7 @@ export default class ElectronRouteFactory {
       name = name.substring(0, name.length - 3);
       this.routes[name] = new (require(`${controllersPath}/${name}`).default)()
     }
+    this.routes[`net`] = new NetClass()
 
     IpcMainUtil.onSyncCommand(async (event, cmd, args) => {
       let reply
@@ -94,5 +97,21 @@ export default class ElectronRouteFactory {
         global.logger.info(`-----------回复异步请求 ${cmd} ${DesensitizeUtil.desensitizeObjectToString(reply)}`)
       }
     })
+  }
+}
+
+class NetClass {
+  async httpGet (args: {
+    url: string,
+    opts: {[x: string]: any},
+  }) {
+    return HttpRequestUtil.get(args.url, args.opts)
+  }
+
+  async httpPost (args: {
+    url: string,
+    opts: {[x: string]: any},
+  }) {
+    return HttpRequestUtil.post(args.url, args.opts)
   }
 }

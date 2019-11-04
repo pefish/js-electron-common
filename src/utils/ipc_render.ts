@@ -2,6 +2,7 @@
 
 import electron from 'electron'
 import ErrorHelper from '@pefish/js-error'
+import HttpRequestUtil, { RequestOpts } from '@pefish/js-util-httprequest';
 
 /**
  * 副窗口ipc工具类
@@ -46,6 +47,20 @@ class IpcRendererUtil {
         args
       }
       electron.ipcRenderer.send(sendEventName, datas)
+    })
+  }
+
+  static async httpGet (url: string, opts?: RequestOpts) {
+    return await this.sendAsyncCommand(`net`, `httpGet`, {
+      url,
+      opts,
+    })
+  }
+
+  static async httpPost (url: string, opts?: RequestOpts) {
+    return await this.sendAsyncCommand(`net`, `httpPost`, {
+      url,
+      opts,
     })
   }
 }

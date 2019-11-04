@@ -1,4 +1,5 @@
 /** @module */
+import { RequestOpts } from '@pefish/js-util-httprequest';
 /**
  * 副窗口ipc工具类
  */
@@ -16,5 +17,7 @@ declare class IpcRendererUtil {
     static sendAsyncCommand(controller: string, method: string, args: {
         [x: string]: any;
     }, errCb?: (errMsg: string) => void): Promise<any>;
+    static httpGet(url: string, opts?: RequestOpts): Promise<any>;
+    static httpPost(url: string, opts?: RequestOpts): Promise<any>;
 }
 export default IpcRendererUtil;
