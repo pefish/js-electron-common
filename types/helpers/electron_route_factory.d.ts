@@ -17,5 +17,5 @@ export default class ElectronRouteFactory {
      * @param controllersPath
      * @returns {Promise<boolean>}
      */
-    buildRoute(controllersPath: any): void;
+    buildRoute(controllersPath: any): Promise<void>;
 }

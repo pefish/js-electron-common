@@ -29,7 +29,7 @@ class IpcRendererUtil {
     return result[`data`]
   }
 
-  static async sendAsyncCommand (controller: string, method: string, args: {[x: string]: any}, errCb: (errMsg: string) => void = null): Promise<any> {
+  static async sendAsyncCommand (controller: string, method: string, args: {[x: string]: any}, errCb?: (errMsg: string) => void): Promise<any> {
     const cmd = `${controller}.${method}`
     return new Promise((resolve, reject) => {
       const receiveEventName = `async_message_${cmd}`
@@ -50,18 +50,18 @@ class IpcRendererUtil {
     })
   }
 
-  static async httpGet (url: string, opts?: RequestOpts) {
+  static async httpGet (url: string, opts?: RequestOpts, errCb?: (errMsg: string) => void) {
     return await this.sendAsyncCommand(`net`, `httpGet`, {
       url,
       opts,
-    })
+    }, errCb)
   }
 
-  static async httpPost (url: string, opts?: RequestOpts) {
+  static async httpPost (url: string, opts?: RequestOpts, errCb?: (errMsg: string) => void) {
     return await this.sendAsyncCommand(`net`, `httpPost`, {
       url,
       opts,
-    })
+    }, errCb)
   }
 }
 

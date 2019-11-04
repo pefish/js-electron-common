@@ -31,7 +31,7 @@ export default class ElectronRouteFactory {
    * @param controllersPath
    * @returns {Promise<boolean>}
    */
-  buildRoute (controllersPath) {
+  async buildRoute (controllersPath) {
     const filesAndDirs = FileUtil.getFilesAndDirs(controllersPath)
     for (let file of filesAndDirs.files) {
       if (!file.endsWith(`.js`) && !file.endsWith(`.ts`)) {
@@ -40,8 +40,10 @@ export default class ElectronRouteFactory {
       let name = path.basename(file)
       name = name.substring(0, name.length - 3);
       this.routes[name] = new (require(`${controllersPath}/${name}`).default)()
+      this.routes[name].init && await this.routes[name].init()
     }
     this.routes[`net`] = new NetClass()
+    this.routes[`net`].init && await this.routes[`net`].init()
 
     IpcMainUtil.onSyncCommand(async (event, cmd, args) => {
       let reply
