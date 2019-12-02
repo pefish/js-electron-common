@@ -17,7 +17,7 @@ declare class IpcRendererUtil {
     static sendAsyncCommand(controller: string, method: string, args: {
         [x: string]: any;
     }, errCb?: (errMsg: string) => void): Promise<any>;
-    static httpGet(url: string, opts?: RequestOpts): Promise<any>;
-    static httpPost(url: string, opts?: RequestOpts): Promise<any>;
+    static httpGet(url: string, opts?: RequestOpts, errCb?: (errMsg: string) => void): Promise<any>;
+    static httpPost(url: string, opts?: RequestOpts, errCb?: (errMsg: string) => void): Promise<any>;
 }
 export default IpcRendererUtil;

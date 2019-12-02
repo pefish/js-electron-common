@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-electron-common",
-  "version": "0.2.0",
+  "version": "0.3.4",
   "description": "common tool of electron",
   "keywords": [
     "common",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@pefish/js-error": "^0.1.1",
+    "@pefish/js-helper-logger": "^0.0.8",
     "@pefish/js-util-desensitize": "^0.1.0",
     "@pefish/js-util-file": "^0.0.4",
     "@pefish/js-util-httprequest": "^0.1.0"
