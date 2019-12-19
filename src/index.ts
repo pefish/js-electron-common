@@ -1,7 +1,6 @@
 import BrowserWindowListenerHelper from './helpers/browser_window_listener'
 import ContextMenuHelper from './helpers/context_menu'
 import DocumentListenerHelper from './helpers/document_listener'
-import ElectronRouteFactoryHelper from './helpers/electron_route_factory'
 import App from './helpers/app'
 import ClipboardUtil from './utils/clipboard'
 import CookieUtil from './utils/cookie'
@@ -19,7 +18,6 @@ export {
   BrowserWindowListenerHelper,
   ContextMenuHelper,
   DocumentListenerHelper,
-  ElectronRouteFactoryHelper,
   App,
   ClipboardUtil,
   CookieUtil,

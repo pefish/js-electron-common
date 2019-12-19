@@ -7,12 +7,27 @@ declare class App {
     packageInfo: {
         [x: string]: any;
     };
+    config: {
+        [x: string]: any;
+    };
+    isDebug: boolean;
+    mainWindow: electron.BrowserWindow;
+    private routes;
+    private windowOptions;
+    private appMenuArr;
+    private prodUri;
+    private debugUri;
     constructor(packageInfo: {
         [x: string]: any;
-    });
-    start(willStartFunc: () => Promise<void>, controllerPath: string, webFilePath: string, config: {
+    }, config: {
         [x: string]: any;
-    }, windowOptions?: BrowserWindowConstructorOptions, appMenuArr?: any[], onClosed?: () => Promise<void>): void;
-    getMainWindow(windowOptions?: BrowserWindowConstructorOptions, appMenuArr?: any[]): electron.BrowserWindow;
+    }, isDebug?: boolean);
+    appendWindowOptions(windowOptions: BrowserWindowConstructorOptions): void;
+    appendAppMenu(appMenu: {
+        [x: string]: any;
+    }): void;
+    start(willStartFunc: () => Promise<void>, controllerPath: string, loadPage?: string, onClosed?: () => Promise<void>): void;
+    buildRoute(controllersPath: string): Promise<void>;
+    getMainWindow(): electron.BrowserWindow;
 }
 export default App;
