@@ -175,7 +175,7 @@ class App {
             label: 'Version ...',
             click: () => {
               electron.dialog.showMessageBox({
-                message: `v${this.packageInfo.version}`
+                message: `v${this.packageInfo.version}\n${this.packageInfo.versionDescription || ""}`
               })
             }
           },
